@@ -1,0 +1,6 @@
+#---ignore folder---
+/config
+
+#---ignore files----
+SinkAgent.sublime-project
+SinkAgent.sublime-workspace
