@@ -5,7 +5,7 @@ the lightning application to get the pushing notification from the server to int
 to the server event.
 
 ## How to install StreamingAgent Component And Demo
-[Unmanaged package](https://login.salesforce.com/packaging/installPackage.apexp?p0=04t6A000000JRqy)
+[Unmanaged package]()
 
 ## How to use the StreamingAgent Component
 

@@ -4,8 +4,8 @@
 		<members>SinkRemoteController</members>
 		<members>SinkDemoController</members>
 		<members>SinkTest</members>
-		<members>cc</members>
-		<members>ccTest</members>
+		<members>DoNotUse</members>
+		<members>DoNotUseTest</members>
 		<name>ApexClass</name>
 	</types>
 	<types>
