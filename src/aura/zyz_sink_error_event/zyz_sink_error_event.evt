@@ -1,4 +1,0 @@
-<aura:event type="COMPONENT" description="Streaming API error event">
-	<aura:attribute name="id" type="String" description="event identifier"/>
-	<aura:attribute name="message" type="String" description="error message"/>
-</aura:event>

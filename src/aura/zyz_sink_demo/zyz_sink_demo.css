@@ -1,0 +1,45 @@
+.THIS {
+    background-color: white !important;
+    padding: 2rem;
+}
+
+.THIS .zyz-section {
+    border: 1px solid #ddd;
+    margin: 4rem;
+    padding: 2rem;
+}
+ 
+ .THIS .zyz-section header {
+    margin-bottom: 20px;
+ }
+
+.THIS .zyz-card {
+    border: 1px solid #eee;
+    padding: 1.5rem;
+    margin-bottom: 0.5rem;
+    border-radius: 4px;
+}
+
+.THIS .zyz-card .zyz-label {
+    font-size: 0.8rem;
+    font-weight: 300;
+    color: rgba(0, 0, 0, 0.46);
+    display: inline-block;
+    padding-right: 5px;
+    padding-left: 5px;
+}
+
+.THIS .zyz-card .zyz-label:first-child {
+    padding-left: 0;
+}
+
+.THIS .zyz-card .zyz-label:after {
+    content: ':';
+}
+
+.THIS .zyz-card .zyz-text {
+    font-size: 0.8rem;
+    font-weight: 400;
+    color: rgba(0, 0, 0, 0.84);
+    display: inline-block;
+}

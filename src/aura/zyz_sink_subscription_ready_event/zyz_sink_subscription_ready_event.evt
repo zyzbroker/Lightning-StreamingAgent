@@ -1,0 +1,1 @@
+<aura:event type="COMPONENT" description="this event is triggered when ready for pushing notification" />

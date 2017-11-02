@@ -47,7 +47,6 @@
     <allowInChatterGroups>false</allowInChatterGroups>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
-    <description>Event logs table</description>
     <enableActivities>false</enableActivities>
     <enableBulkApi>true</enableBulkApi>
     <enableFeeds>false</enableFeeds>
@@ -57,18 +56,9 @@
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <fields>
-        <fullName>Message__c</fullName>
+        <fullName>EventId__c</fullName>
         <externalId>false</externalId>
-        <label>Message</label>
-        <length>8192</length>
-        <trackTrending>false</trackTrending>
-        <type>LongTextArea</type>
-        <visibleLines>5</visibleLines>
-    </fields>
-    <fields>
-        <fullName>Tag__c</fullName>
-        <externalId>false</externalId>
-        <label>Tag</label>
+        <label>EventId</label>
         <length>50</length>
         <required>false</required>
         <trackTrending>false</trackTrending>
@@ -76,24 +66,38 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>Type__c</fullName>
+        <fullName>Payload__c</fullName>
         <externalId>false</externalId>
-        <label>Type</label>
+        <label>Payload</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Priority__c</fullName>
+        <externalId>false</externalId>
+        <label>Priority</label>
         <picklist>
             <picklistValues>
-                <fullName>debug</fullName>
+                <fullName>1</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>info</fullName>
+                <fullName>2</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>warn</fullName>
+                <fullName>3</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>error</fullName>
+                <fullName>4</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>5</fullName>
                 <default>false</default>
             </picklistValues>
             <sorted>false</sorted>
@@ -102,12 +106,13 @@
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
     </fields>
-    <label>Event Log</label>
+    <label>Notification</label>
     <nameField>
-        <label>Event Logs Name</label>
-        <type>Text</type>
+        <displayFormat>N{00000000}</displayFormat>
+        <label>Notification Name</label>
+        <type>AutoNumber</type>
     </nameField>
-    <pluralLabel>EventLogs</pluralLabel>
+    <pluralLabel>Notifications</pluralLabel>
     <searchLayouts/>
     <sharingModel>ReadWrite</sharingModel>
 </CustomObject>

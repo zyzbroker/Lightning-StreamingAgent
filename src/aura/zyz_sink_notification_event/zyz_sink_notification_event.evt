@@ -1,4 +1,4 @@
 <aura:event type="COMPONENT" description="streaming api subscription event">
-	<aura:attribute name="id" type="String" description="event identifer"/>
-	<aura:attribute name="response" type="Object" description="event response"/>
+	<aura:attribute name="channel" type="String" description="channel"/>
+	<aura:attribute name="data" type="Object" description="topic data"/>
 </aura:event>

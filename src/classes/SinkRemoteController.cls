@@ -1,5 +1,7 @@
 public without sharing class SinkRemoteController {
-	public SinkRemoteController() {
-		
-	}
+
+    @AuraEnabled
+    public static String getSinkSession(){
+        return UserInfo.getSessionId();
+    }
 }

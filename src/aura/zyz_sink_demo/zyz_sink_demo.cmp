@@ -1,0 +1,33 @@
+<aura:component controller="SinkDemoController" implements="force:appHostable,flexipage:availableForAllPageTypes" access="global">
+    <aura:attribute name="notifications" type="list" default="[]"/>
+    <aura:handler name="sinkNotification" event="c:zyz_sink_notification_event" action="{!c.onNotify}"/>
+    <div>
+        <lightning:spinner alternativeText="Loading" size="medium" aura:id="spinner" class="slds-hide"/>
+       <c:zyz_sink debugEnabled="true"/>
+        <section class="zyz-section">
+            <header>Message Editor</header>
+            <div>
+                <label>Message:</label>
+                <lightning:input type="text" aura:id="message"/>
+                <lightning:button variant="brand" label="Submit" onclick="{!c.onSubmit}"/>
+            </div>
+        </section>
+        <section class="zyz-section">
+            <header>Message Board</header>
+            <div>
+                <div id="messageBoard">
+                    <aura:iteration items="{!v.notifications}" var="notification">
+                        <div class="zyz-card">
+                            <span class="zyz-label">Channel</span><span class="zyz-text">{!notification.channel}</span>
+                            <span class="zyz-label">ReplayId</span><span class="zyz-text">{!notification.data.event.replayId}</span>
+                            <span class="zyz-label">Timestamp</span><span class="zyz-text">{!notification.data.event.createdDate}</span>
+                            <span class="zyz-label">EventId</span><span class="zyz-text">{!notification.data.sobject.EventId__c}</span>
+                            <span class="zyz-label">Priority</span><span class="zyz-text">{!notification.data.sobject.Priority__c}</span>
+                            <span class="zyz-label">Payload</span><span class="zyz-text">{!notification.data.sobject.Payload__c}</span>
+                        </div>
+                    </aura:iteration>
+                </div>
+            </div>
+        </section>
+    </div>    
+</aura:component>
