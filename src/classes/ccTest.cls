@@ -2,24 +2,24 @@
 public class CCTest {
     public static testMethod void test_CC(){ 
         cc c = new cc();
-        Integer i = c.calc_i();
+        Integer i = c.getCount();
         system.debug('i: ' + i);
         system.assertNotEquals(i,0);
-        i = c.calc_i_2();
+        i = c.getCount_2();
         system.assertNotEquals(i,0);
-        i = c.calc_i_3();
+        i = c.getCount_3();
         system.assertNotEquals(i,0);
-        i = c.calc_i_4();
+        i = c.getCount_4();
         system.assertNotEquals(i,0);
-        i = c.calc_i_5();
+        i = c.getCount_5();
         system.assertNotEquals(i,0);
-        i = c.calc_i_6();
+        i = c.getCount_6();
         system.assertNotEquals(i,0);
-        i = c.calc_i_7();
+        i = c.getCount_7();
         system.assertNotEquals(i,0);
-        i = c.calc_i_8();
+        i = c.getCount_8();
         system.assertNotEquals(i,0);
-        i = c.calc_i_9();
+        i = c.getCount_9();
         system.assertNotEquals(i,0);
         
     }
