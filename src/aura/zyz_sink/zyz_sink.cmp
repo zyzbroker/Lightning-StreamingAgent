@@ -1,5 +1,5 @@
 <aura:component controller="SinkRemoteController">	
-    <aura:attribute name="topic" type="string" default="ApplicationNotification"/>
+    <aura:attribute name="channel" type="string" default="/topic/ApplicationNotification"/>
     <aura:attribute name="debugEnabled" type="Boolean" default="false"/>
     <aura:attribute name="SessionId" type="String" default="" access="private"/>
     <aura:attribute name="cometDReady" type="Boolean" default="false" access="private"/>

@@ -1,0 +1,10 @@
+PushTopic pushTopic = new PushTopic();
+pushTopic.Name = 'ApplicationNotification';
+pushTopic.Query = 'SELECT Id, Name, EventId__c, Payload__c, Priority__c FROM Notification__c';
+pushTopic.ApiVersion = 39.0;
+pushTopic.NotifyForOperationCreate = true;
+pushTopic.NotifyForOperationUpdate = false;
+pushTopic.NotifyForOperationUndelete = false;
+pushTopic.NotifyForOperationDelete = false;
+pushTopic.NotifyForFields = 'Referenced';
+insert pushTopic;

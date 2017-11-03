@@ -3,7 +3,7 @@
     <aura:handler name="sinkNotification" event="c:zyz_sink_notification_event" action="{!c.onNotify}"/>
     <div>
         <lightning:spinner alternativeText="Loading" size="medium" aura:id="spinner" class="slds-hide"/>
-       <c:zyz_sink debugEnabled="true"/>
+       <c:zyz_sink debugEnabled="true" channel="/topic/ApplicationNotification" />
         <section class="zyz-section">
             <header>Message Editor</header>
             <div>

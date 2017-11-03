@@ -5,18 +5,18 @@ the lightning application to get the pushing notification from the server to int
 to the server event.
 
 ## How to install StreamingAgent Component And Demo
-[Unmanaged package](https://login.salesforce.com/packaging/installPackage.apexp?p0=04t6A000000JRr3)
+[Unmanaged package](https://login.salesforce.com/packaging/installPackage.apexp?p0=04t6A000000JRr8)
 
 ## How to use the StreamingAgent Component
 
 ### Step1: add the below html into your container component
 ```HTML
-<c:zyz_sink debugEnabled="true" topic="ServiceClose"/>
+<c:zyz_sink debugEnabled="true" channel="/topic/ServiceClose"/>
 ```
 
 #### attribute definitions
 ```
-topic: this is the name value of the PushTopic Table
+channel: for platform event, it is like /event/{platformEventAPI}; for pushTopic, it is "/topic/PushTopicRecordName"
 debugEnabled: true/false. if true, streaming commnucation data will be logged to the browser console.
 ```
 
@@ -34,6 +34,10 @@ debugEnabled: true/false. if true, streaming commnucation data will be logged to
         console.log(JSON.stringify(params.data.sobject));
     },
 ```
+
+### Step3: login salesforce instance, open developer console apex anonymous console and copy codes from /scripts/PushTopic.cls 
+to create PushTopic or create PlatformEvent the same as creating Custom Object.
+
 
 ## We are using the following opensource framework CometD 3.1.2
 [CometD](https://docs.cometd.org/current/reference/#_installation)

@@ -58,7 +58,7 @@
     },
 
     _subscribe: function(self, cmp, cometD) {
-        var channel = ['/topic/', cmp.get('v.topic')].join('');
+        var channel = cmp.get('v.channel');
         
         var subscriptionReady = function(self, cmp){
             var readyEvt = cmp.getEvent('sinkSubscriptionReady');
