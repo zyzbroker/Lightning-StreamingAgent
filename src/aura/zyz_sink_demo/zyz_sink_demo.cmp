@@ -1,13 +1,26 @@
 <aura:component controller="SinkDemoController" implements="force:appHostable,flexipage:availableForAllPageTypes" access="global">
     <aura:attribute name="notifications" type="list" default="[]"/>
+    <aura:attribute name="isCometD" type="boolean" default="true"/>
+    <aura:dependency resource="markup://c:zyz_sink"/>
+    <aura:dependency resource="markup://c:faye_sink"/>
+
     <aura:handler name="sinkNotification" event="c:zyz_sink_notification_event" action="{!c.onNotify}"/>
     <div>
         <lightning:spinner alternativeText="Loading" size="medium" aura:id="spinner" class="slds-hide"/>
-       <c:zyz_sink debugEnabled="true" channel="/topic/ApplicationNotification" />
+       <div class="rst-toolbar">
+           <lightning:button label="Use CometD" onclick="{! c.onCometDClicked}"></lightning:button>
+           <lightning:button label="Use Faye" onclick="{! c.onFayeClicked }"></lightning:button>
+       </div>
+       <aura:if isTrue="{! v.isCometD}">
+            <c:zyz_sink debugEnabled="true" channel="/topic/ApplicationNotification" />
+            <aura:set attribute="else">
+                <c:faye_sink debugEnabled="true" channel="/topic/ApplicationNotification" />
+            </aura:set>
+        </aura:if>
         <section class="zyz-section">
-            <header>Message Editor</header>
+            <header>Message Editor </header>
             <div>
-                <label>Message:</label>
+                <span>Message:</span>
                 <lightning:input type="text" aura:id="message"/>
                 <lightning:button variant="brand" label="Submit" onclick="{!c.onSubmit}"/>
             </div>

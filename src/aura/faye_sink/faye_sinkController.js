@@ -9,5 +9,5 @@
 
     onSubscriptionReady: function(cmp, evt, h){
         h.onSubscriptionReady(cmp,evt);
-    }
+    },
 })

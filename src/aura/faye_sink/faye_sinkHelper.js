@@ -5,8 +5,8 @@
             'source': cmp,
             'action': 'getSinkSession',
             'onSuccess': function(cmp, value) {
-                cmp.set('v.SessionId', value);
-                if (!!cmp.get('v.cometDReady') && !cmp.get('v.handShaked')) {
+                cmp.set('v.sessionId', value);
+                if (!!cmp.get('v.fayeReady') && !cmp.get('v.handShaked')) {
                     self._init.call(self, cmp);
                 }
             }
@@ -20,8 +20,8 @@
 
     // triggered when all sripts are loaded.
     onLoad: function(cmp) {
-        cmp.set('v.cometDReady', true);
-        if (!cmp.get('v.SessionId')) {
+        cmp.set('v.fayeReady', true);
+        if (!cmp.get('v.sessionId')) {
             return;
         }
         cmp.set('v.handShaked', true);
@@ -29,51 +29,32 @@
     },
 
     _init: function(cmp) {
-        var cometd = new org.cometd.CometD(),
-            debug = cmp.get('v.debugEnabled') || 0,
-            self = this,
-            config = {
-                'url': this._getUrl(),
-                'appendMessageTypeToURL': false,
-                'requestHeaders': {
-                    'Authorization': this._getToken(cmp)
-                }
-            };
+        var debug = cmp.get('v.debugEnabled') || 0,
+            url = this._getUrl(),
+            client = new Faye.Client(url),
+            token = this._getToken(cmp),
+            channel = cmp.get('v.channel'),
+            self = this;
+
+
         if (!!debug) {
-            config.logLevel = 'debug';
-            self._debug(config.url);
-            self._debug(config.requestHeaders);
+            self._debug(url);
+            self._debug('Authorization:' + token);
         }
 
-        cometd.configure(config);
-        cometd.websocketEnabled = true;
-        cometd.handshake(function(reply) {
-            if (reply.successful) {
-                !!debug && self._debug('handshake succeeded');
-                self._runContext.call(self, cmp, self._subscribe, cometd);
-            } else {
-                !!debug && self._debug(reply);
-            }
-        });
-    },
-
-    _subscribe: function(cmp, cometD) {
-        var channel = cmp.get('v.channel');
-        var self = this;
-        var subscriptionReady = function(cmp) {
+        client.setHeader('Authorization', token);
+        client.disable('websocket');
+        client.subscribe(channel, function(msg) {
+            self._runContext.call(self, cmp, self._receive, {
+                channel: channel,
+                data: msg
+            });
+        }).then(function() {
             var readyEvt = cmp.getEvent('sinkSubscriptionReady');
             readyEvt.fire();
-        };
-
-        cometD.subscribe(channel, function(message) {
-            self._runContext.call(self, cmp, self._receive, message);
-        }, function(reply) {
-            if (reply.successful) {
-                self._debug(['subscribing on', channel, ' succeeded.'].join(' '));
-                self._async.call(self, cmp, subscriptionReady, 1);
-            } else {
-                self._debug(reply);
-            }
+            console.log('faye: subscribed');
+        }).catch(function(err){
+            console.log('faye:' + err);
         });
     },
 
@@ -90,11 +71,11 @@
     },
 
     _debug: function(msg) {
-        console.log('[CometD-debug]' + (msg instanceof String) ? msg : JSON.stringify(msg));
+        console.log('[Faye-debug]' + (msg instanceof String) ? msg : JSON.stringify(msg));
     },
 
     _receive: function(cmp, message) {
-        var self=this, 
+        var self = this,
             action = cmp.getEvent('sinkNotification');
         action.setParams(message);
         action.fire();
@@ -102,7 +83,7 @@
     },
 
     _getToken: function(cmp) {
-        return ['OAuth', cmp.get('v.SessionId')].join(' ');
+        return ['OAuth', cmp.get('v.sessionId')].join(' ');
     },
 
     _getUrl: function() {

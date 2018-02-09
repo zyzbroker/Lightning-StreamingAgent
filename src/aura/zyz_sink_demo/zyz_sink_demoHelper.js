@@ -6,6 +6,10 @@
         cmp.set('v.notifications', arrNotes);
     },
 
+    toggleProtocol: function(cmp, yes){
+        cmp.set('v.isCometD', yes);
+    },
+
     submit: function(cmp, evt) {
         $A.util.toggleClass(cmp.find('spinner'), 'slds-hide');
         var msg = cmp.find('message').get('v.value'),

@@ -1,0 +1,19 @@
+.THIS {
+    position: absolute;
+    right: 0.5rem;
+}
+
+.THIS .zyz-broadcast.success {
+    color: blue;
+    border-color: blue;
+}
+
+.THIS .zyz-broadcast.warn {
+    color: red;
+    border-color: red;
+}
+
+.THIS .zyz-broadcast.default {
+    color: rgb(221, 219, 218);
+    border-color: rgb(221, 219, 218);
+}
